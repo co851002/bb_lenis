@@ -138,7 +138,7 @@ body {
   align-self: stretch;
   /* Burberry-Logo.png canvas 3840×2160 (16∶9). */
   aspect-ratio: 16 / 9;
-  padding: 0.5rem;
+  padding: 1.5rem;
   background-color: var(--bg);
   background-image: url("/Burberry-Logo.png");
   /* Use full content width; height follows asset aspect. */
@@ -152,14 +152,14 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: clamp(1.75rem, 7vh, 3.25rem);
+  bottom: clamp(4.75rem, 12vh, 8rem);
   text-align: center;
 }
 
 .splash-screen__line {
   margin: 0;
   font-family: "Burberry House", "Times New Roman", Times, serif;
-  font-size: clamp(1.2rem, 3.35vw, 1.52rem);
+  font-size: clamp(0.9rem, 3.35vw, 1.52rem);
   font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1.35;
