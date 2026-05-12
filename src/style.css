@@ -160,7 +160,7 @@ body {
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;
-  height: 100%;
+  height: 90%;
   background: #fafafa;
   /* border: 1px solid var(--rule); */
   padding: var(--slide-inset);
@@ -274,6 +274,7 @@ body {
 
 .product-card__cta {
   padding-inline: var(--slide-inset);
+  padding-block: clamp(1.7rem, 8vmin, 3.3rem);
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -324,6 +325,7 @@ body {
 
 .product-card__name {
   margin: 0;
+  padding-top: clamp(0.85rem, 4vmin, 1.65rem);
   font-family: "Burberry House", "Times New Roman", Times, serif;
   font-weight: 400;
   font-size: 1.35rem;
@@ -331,6 +333,7 @@ body {
 
 .product-card__desc {
   margin: 0;
+  padding-bottom: clamp(0.65rem, 3.2vmin, 1.35rem);
   font-size: 0.8rem;
   color: #555;
 }
