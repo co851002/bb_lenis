@@ -310,6 +310,27 @@ body {
 .track--products .product-card > .frame {
   align-self: stretch;
   width: 100%;
+  flex: 0 0 auto;
+  min-height: 0;
+  height: auto;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.track--products .product-card__media {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--bg);
+}
+
+.track--products .product-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .track--products .product-card__name {
