@@ -111,7 +111,7 @@ body {
   flex-shrink: 0;
 }
 
-/* Opening splash: centered logo (+ taglines). White canvas reads dark Logo.png cleanly. */
+/* Opening splash: centered logo (+ taglines). White canvas reads dark wordmark cleanly. */
 .splash-screen {
   flex: 1;
   width: 100%;
@@ -129,11 +129,19 @@ body {
 
 .splash-screen__logo {
   display: block;
-  /* max-width: 90vw;
-  max-height: 90vh; */
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  box-sizing: border-box;
+  width: 100%;
+  align-self: stretch;
+  /* Burberry-Logo.png canvas 3840×2160 (16∶9). */
+  aspect-ratio: 16 / 9;
+  padding: 0.5rem;
+  background-color: transparent;
+  background-image: url("/Burberry-Logo.png");
+  /* Use full content width; height follows asset aspect. */
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-origin: content-box;
 }
 
 .splash-screen__taglines {
