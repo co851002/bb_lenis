@@ -159,7 +159,7 @@ body {
 .splash-screen__line {
   margin: 0;
   font-family: "Burberry House", "Times New Roman", Times, serif;
-  font-size: clamp(1.56rem, 4.2vw, 1.8rem);
+  font-size: clamp(1.2rem, 3.35vw, 1.52rem);
   font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1.35;
@@ -176,7 +176,7 @@ body {
   background: var(--bg);
   padding: var(--slide-inset);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -185,6 +185,10 @@ body {
   width: 100%;
   height: auto;
   object-fit: fill;
+}
+
+.frame.frame--bw {
+  align-items: center;
 }
 
 .frame--bw img {
@@ -209,6 +213,7 @@ body {
 
 .vertical-story__intro {
   margin:   0 1rem 2rem;
+  font-family: "Burberry House", "Times New Roman", Times, serif;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   color: #5a5a5a;
@@ -247,15 +252,19 @@ body {
 
 .feature-block__img {
   display: block;
-  width: 100%;
+  box-sizing: border-box;
+  width: calc(100% - 4rem);
+  max-width: 100%;
   height: auto;
-  filter: grayscale(100%);
+  margin-inline: auto;
   margin-bottom: 1.25rem;
+  filter: grayscale(100%);
 }
 
 .feature-block__copy {
   margin:   0 2rem 2rem;
 
+  font-family: "Burberry House", "Times New Roman", Times, serif;
   font-size: 0.9rem;
   color: #555;
   text-align: center;
@@ -303,9 +312,17 @@ body {
   width: 100%;
 }
 
-.track--products .product-card__name,
+.track--products .product-card__name {
+  font-family: "Burberry House", Georgia, serif;
+  text-align: left;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  box-sizing: border-box;
+}
+
 .track--products .product-card__desc {
-  font-family: "Burberry Oracle Book", "Burberry House", Georgia, serif;
+  font-family: "Burberry Oracle Book", Georgia, serif;
   text-align: left;
   width: 100%;
   max-width: none;
