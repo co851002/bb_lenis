@@ -2,38 +2,58 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import "./style.css";
 
-function setVH() {
-  document.documentElement.style.setProperty(
-    "--vh",
-    `${window.innerHeight * 0.01}px`
-  );
+function readViewportPx() {
+  if (typeof window.visualViewport !== "undefined") {
+    return {
+      vw: window.visualViewport.width,
+      vh: window.visualViewport.height,
+    };
+  }
+  return {
+    vw: window.innerWidth,
+    vh: window.innerHeight,
+  };
+}
+
+/** Match viewport units used in CSS to Lenis/track math (`inner*` not `100vw` / `100vh`). */
+function setViewportCss() {
+  const { vw, vh } = readViewportPx();
+  const root = document.documentElement;
+  root.style.setProperty("--vh", `${vh * 0.01}px`);
+  root.style.setProperty("--viewport-h", `${vh}px`);
+  root.style.setProperty("--viewport-w", `${vw}px`);
 }
 
 function clamp(n, min, max) {
   return Math.min(max, Math.max(min, n));
 }
 
+function viewportSize() {
+  return readViewportPx();
+}
+
 function refreshStripLayouts() {
+  const { vw, vh } = viewportSize();
+
   document.querySelectorAll(".scroll-strip").forEach((strip) => {
     const panels = parseInt(strip.dataset.panels, 10);
-    strip.style.height = `${panels * window.innerHeight}px`;
+    strip.style.height = `${panels * vh}px`;
   });
 
   document.querySelectorAll(".scroll-strip-inner").forEach((inner) => {
-    inner.style.height = `${window.innerHeight}px`;
+    inner.style.height = `${vh}px`;
   });
 
   document.querySelectorAll(".track").forEach((track) => {
     const panels = track.children.length;
-    track.style.width = `${panels * window.innerWidth}px`;
+    track.style.width = `${panels * vw}px`;
   });
 
   syncTracksFromLayout();
 }
 
 function syncTracksFromLayout() {
-  const vh = window.innerHeight;
-  const vw = window.innerWidth;
+  const { vw, vh } = viewportSize();
 
   document.querySelectorAll(".scroll-strip").forEach((strip) => {
     const track = strip.querySelector(".track");
@@ -54,7 +74,7 @@ function syncTracksFromLayout() {
 let lenis;
 
 function boot() {
-  setVH();
+  setViewportCss();
 
   lenis = new Lenis({
     smoothWheel: true,
@@ -72,10 +92,23 @@ function boot() {
   requestAnimationFrame(raf);
 
   refreshStripLayouts();
+
+  window.visualViewport?.addEventListener("resize", () => {
+    setViewportCss();
+    refreshStripLayouts();
+  });
+
+  if (typeof ResizeObserver !== "undefined") {
+    const ro = new ResizeObserver(() => {
+      setViewportCss();
+      refreshStripLayouts();
+    });
+    ro.observe(document.documentElement);
+  }
 }
 
 window.addEventListener("resize", () => {
-  setVH();
+  setViewportCss();
   refreshStripLayouts();
 });
 
