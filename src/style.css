@@ -369,6 +369,44 @@ body {
   font-size: clamp(0.8rem, 2.2vmin, 0.95rem);
 }
 
+/*
+ * `.scroll-strip-inner` is one viewport tall with overflow hidden.
+ * Short/narrow phones: cap product image height and tighten rails so Shop stays visible.
+ */
+@media screen and (max-height: 720px), screen and (max-width: 390px) {
+  .track--products .product-card {
+    gap: 0.2rem;
+    padding-bottom: clamp(0.35rem, 2vmin, 1rem);
+  }
+
+  .track--products .product-card > .frame {
+    flex: 0 0 auto;
+    padding-block: clamp(0.35rem, 2vmin, 0.65rem);
+  }
+
+  .track--products .product-card__media {
+    aspect-ratio: 3 / 4;
+    width: auto;
+    max-width: 100%;
+    max-height: min(34vh, 232px);
+  }
+
+  .track--products .product-card__name {
+    padding-top: clamp(0.3rem, 2vmin, 0.75rem);
+  }
+
+  .track--products .product-card__desc {
+    padding-bottom: clamp(0.25rem, 2vmin, 0.65rem);
+    font-size: 0.72rem;
+    line-height: 1.38;
+  }
+
+  .track--products .product-card__cta,
+  .track--products .product-card__cta--oracle {
+    padding-block: clamp(0.35rem, 2vmin, 1.35rem);
+  }
+}
+
 .product-card__cta:hover {
   color: var(--accent);
 }
