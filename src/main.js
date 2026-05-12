@@ -2,18 +2,10 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import "./style.css";
 
-function viewportHeight() {
-  const vv =
-    typeof window.visualViewport !== "undefined"
-      ? window.visualViewport
-      : null;
-  return vv != null && vv.height > 0 ? vv.height : window.innerHeight;
-}
-
 function setVH() {
   document.documentElement.style.setProperty(
     "--vh",
-    `${viewportHeight() * 0.01}px`
+    `${window.innerHeight * 0.01}px`
   );
 }
 
@@ -27,7 +19,7 @@ function horizontalScrollSpanPx(trackEl, viewportW) {
 }
 
 function refreshStripLayouts() {
-  const vh = viewportHeight();
+  const vh = window.innerHeight;
   const vw = window.innerWidth;
 
   document.querySelectorAll(".scroll-strip-inner").forEach((inner) => {
@@ -102,12 +94,5 @@ window.addEventListener("resize", () => {
   setVH();
   refreshStripLayouts();
 });
-
-if (typeof window.visualViewport !== "undefined") {
-  window.visualViewport.addEventListener("resize", () => {
-    setVH();
-    refreshStripLayouts();
-  });
-}
 
 boot();
