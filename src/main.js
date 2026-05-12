@@ -13,41 +13,42 @@ function clamp(n, min, max) {
   return Math.min(max, Math.max(min, n));
 }
 
+function horizontalScrollSpanPx(trackEl, viewportW) {
+  const w = Math.ceil(trackEl.scrollWidth);
+  return Math.max(0, w - viewportW);
+}
+
 function refreshStripLayouts() {
-  document.querySelectorAll(".scroll-strip").forEach((strip) => {
-    const panels = parseInt(strip.dataset.panels, 10);
-    strip.style.height = `${panels * window.innerHeight}px`;
-  });
+  const vh = window.innerHeight;
+  const vw = window.innerWidth;
 
   document.querySelectorAll(".scroll-strip-inner").forEach((inner) => {
-    inner.style.height = `${window.innerHeight}px`;
+    inner.style.height = `${vh}px`;
   });
 
-  document.querySelectorAll(".track").forEach((track) => {
-    const panels = track.children.length;
-    track.style.width = `${panels * window.innerWidth}px`;
+  document.querySelectorAll(".scroll-strip").forEach((strip) => {
+    const track = strip.querySelector(".track");
+    if (!track) return;
+    /** Vertical scroll allocated = horizontal overrun (sticky 1:1 mapping). */
+    const span = horizontalScrollSpanPx(track, vw);
+    strip.style.height = `${vh + span}px`;
   });
 
   syncTracksFromLayout();
 }
 
 function syncTracksFromLayout() {
-  const vh = window.innerHeight;
   const vw = window.innerWidth;
 
   document.querySelectorAll(".scroll-strip").forEach((strip) => {
     const track = strip.querySelector(".track");
     if (!track) return;
 
-    const panels = parseInt(strip.dataset.panels, 10);
+    const span = horizontalScrollSpanPx(track, vw);
     const stripRect = strip.getBoundingClientRect();
-    const span = panels * vh - vh;
 
     const scrolledPastStart = clamp(-stripRect.top, 0, span);
-    const progress = span <= 0 ? 0 : scrolledPastStart / span;
-    const maxShift = (panels - 1) * vw;
-
-    track.style.transform = `translate3d(${-progress * maxShift}px, 0, 0)`;
+    track.style.transform = `translate3d(${-scrolledPastStart}px, 0, 0)`;
   });
 }
 
@@ -71,8 +72,23 @@ function boot() {
   }
   requestAnimationFrame(raf);
 
+  if (typeof document.fonts !== "undefined") {
+    document.fonts.ready.then(() => refreshStripLayouts());
+  }
+
+  if (typeof ResizeObserver !== "undefined") {
+    const ro = new ResizeObserver(() => {
+      refreshStripLayouts();
+    });
+    document.querySelectorAll(".track").forEach((t) => ro.observe(t));
+  }
+
   refreshStripLayouts();
 }
+
+window.addEventListener("load", () => {
+  refreshStripLayouts();
+});
 
 window.addEventListener("resize", () => {
   setVH();

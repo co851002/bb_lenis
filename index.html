@@ -3,49 +3,205 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lenis horizontal strips</title>
+    <title>Burberry — The Trench</title>
   </head>
   <body>
-    <main>
-      <section
-        class="scroll-strip"
-        data-panels="6"
-        aria-label="First horizontal sequence, six panels"
-      >
+    <main class="story">
+      <!-- Artboard 1: horizontal (brand + 5 portraits, B&W) -->
+      <section class="scroll-strip" aria-label="Campaign gallery">
         <div class="scroll-strip-inner">
-          <div class="track">
-            <div class="panel" style="--panel-bg: #e63946" data-panel="1"></div>
-            <div class="panel" style="--panel-bg: #f4a261" data-panel="2"></div>
-            <div class="panel" style="--panel-bg: #2a9d8f" data-panel="3"></div>
-            <div class="panel" style="--panel-bg: #264653" data-panel="4"></div>
-            <div class="panel" style="--panel-bg: #8338ec" data-panel="5"></div>
-            <div class="panel" style="--panel-bg: #ffbe0b" data-panel="6"></div>
+          <div class="track track--artboard1">
+            <article class="track-slide track-slide--splash">
+              <div class="splash-screen">
+                <img
+                  class="splash-screen__logo"
+                  src="/Logo.png"
+                  alt="Burberry"
+                  width="220"
+                  height="60"
+                />
+                <div class="splash-screen__taglines">
+                  <p class="splash-screen__line">The Trench,</p>
+                  <p class="splash-screen__line">Portraits of an icon</p>
+                </div>
+              </div>
+            </article>
+            <article class="track-slide track-slide--portrait">
+              <figure class="frame frame--bw">
+                <img
+                  src="/1.jpg"
+                  alt=""
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+            </article>
+            <article class="track-slide track-slide--portrait">
+              <figure class="frame frame--bw">
+                <img
+                  src="/2.jpg"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </article>
+            <article class="track-slide track-slide--portrait">
+              <figure class="frame frame--bw">
+                <img
+                  src="/3.jpg"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </article>
+            <article class="track-slide track-slide--portrait">
+              <figure class="frame frame--bw">
+                <img
+                  src="/4.jpg"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </article>
+            <article class="track-slide track-slide--portrait">
+              <figure class="frame frame--bw">
+                <img
+                  src="/5.jpg"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </article>
           </div>
         </div>
       </section>
 
-      <section
-        class="vertical-stack"
-        aria-label="Two full-viewport screens, vertical scroll"
-      >
-        <div class="stack-panel" style="--panel-bg: #fb5607" data-panel="7"></div>
-        <div class="stack-panel" style="--panel-bg: #06d6a0" data-panel="8"></div>
+      <!-- Artboard 2: vertical story + 9:16 video + feature -->
+      <section class="vertical-story" aria-label="Film and feature">
+        <div class="vertical-story__inner">
+          <p class="vertical-story__intro">
+            Celebrating 170 years of Burberry, the campaign captures our most
+            iconic silhouette through a series of intimate black-and-white
+            portraits, brought to life by a cast of global stars.
+          </p>
+
+          <div class="video-shell">
+            <video
+              class="video-shell__media"
+              src="/portrait%20of%20an%20icon%20-%20vid.mp4"
+              playsinline
+              muted
+              loop
+              autoplay
+              controls
+            ></video>
+          </div>
+
+          <h2 class="vertical-story__section-title">Discover the Trench</h2>
+
+          <article class="feature-block">
+            <img
+              class="feature-block__img"
+              src="/39D7B746-DFAF-4B26-9533-59021B1A6A25.webp"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="feature-block__copy">
+              The trench is the cornerstone of Burberry - made from gabardine,
+              a shower-resistant fabric invented by Thomas Burberry.
+            </p>
+          </article>
+        </div>
       </section>
 
-      <section
-        class="scroll-strip"
-        data-panels="4"
-        aria-label="Second horizontal sequence, four panels"
-      >
+      <!-- Section 3: horizontal product rail -->
+      <section class="scroll-strip" aria-label="Trench coats">
         <div class="scroll-strip-inner">
-          <div class="track">
-            <div class="panel" style="--panel-bg: #118ab2" data-panel="9"></div>
-            <div class="panel" style="--panel-bg: #ffd166" data-panel="10"></div>
-            <div class="panel" style="--panel-bg: #ef476f" data-panel="11"></div>
-            <div class="panel" style="--panel-bg: #7209b7" data-panel="12"></div>
+          <div class="track track--products">
+            <article class="track-slide track-slide--product">
+              <div class="product-card">
+                <figure class="frame frame--colour">
+                  <img
+                    src="/S3-Img1.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <h3 class="product-card__name">Kensington</h3>
+                <p class="product-card__desc">
+                  Characterised by classic proportions, the Kensington trench
+                  coat is tailored to a regular fit with structured shoulders.
+                </p>
+                <a class="product-card__cta product-card__cta--oracle" href="#">Shop now</a>
+              </div>
+            </article>
+            <article class="track-slide track-slide--product">
+              <div class="product-card">
+                <figure class="frame frame--colour">
+                  <img
+                    src="/S3-Img2.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <h3 class="product-card__name">Chelsea</h3>
+                <p class="product-card__desc">
+                  A refined take on Burberry’s rainwear heritage, the Chelsea
+                  trench coat is cut close to the body for a clean, modern
+                  silhouette.
+                </p>
+                <a class="product-card__cta" href="#">Shop</a>
+              </div>
+            </article>
+            <article class="track-slide track-slide--product">
+              <div class="product-card">
+                <figure class="frame frame--colour">
+                  <img
+                    src="/S3-Img3.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <h3 class="product-card__name">Camden</h3>
+                <p class="product-card__desc">
+                  Defined by its streamlined silhouette, the Camden car coat
+                  marks 170 years of Burberry with a new lightweight design. Now
+                  available in tropical gabardine.
+                </p>
+                <a class="product-card__cta" href="#">Shop</a>
+              </div>
+            </article>
+            <article class="track-slide track-slide--product">
+              <div class="product-card">
+                <figure class="frame frame--colour">
+                  <img
+                    src="/S3-Img4.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <h3 class="product-card__name">Waterloo</h3>
+                <p class="product-card__desc">
+                  Inspired by the original Burberry trenchcoat, the Waterloo is
+                  cut to a long length with soft, curved shoulders.
+                </p>
+                <a class="product-card__cta" href="#">Shop</a>
+              </div>
+            </article>
           </div>
         </div>
       </section>
+
+      
     </main>
 
     <script type="module" src="/src/main.js"></script>

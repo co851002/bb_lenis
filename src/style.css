@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Burberry House";
+  src: url("/Burberry%20House%20Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Burberry Oracle Book";
+  src: url("/BurberryOracle-Book.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -6,6 +22,14 @@
 
 :root {
   --vh: 1vh;
+  --bg: #ffffff;
+  --paper: #f6f4f1;
+  --ink: #1b1b1b;
+  --muted: #6e6e6e;
+  --accent: #e8b8c0;
+  --rule: #e0deda;
+  /* Inset around images inside full-viewport horizontal slides */
+  --slide-inset: clamp(0.75rem, 4vmin, 2.25rem);
 }
 
 html.lenis {
@@ -18,14 +42,17 @@ html.lenis.lenis-smooth {
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
-  color: #fafafa;
-  background: #0d0d0d;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
 }
 
-main {
+.story {
   position: relative;
 }
+
+/* —— Horizontal strips (variable-width track, 1:1 scroll mapping) —— */
 
 .scroll-strip {
   position: relative;
@@ -36,48 +63,289 @@ main {
   top: 0;
   height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
+  background: var(--bg);
 }
 
 .track {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
   height: 100%;
   width: max-content;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
   will-change: transform;
 }
 
-.panel {
-  flex: 0 0 100vw;
+.track--artboard1 {
+  padding-inline: 0;
+  gap: 0;
+}
+
+.track--products {
+  padding-inline: 0;
+  gap: 0;
+}
+
+.track-slide {
+  flex: 0 0 auto;
   height: 100%;
-  background: var(--panel-bg);
-  display: grid;
-  place-items: center;
-  font-weight: 600;
-  font-size: clamp(2rem, 6vw, 4rem);
-  letter-spacing: 0.04em;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
-.panel::after {
-  content: attr(data-panel);
-  color: rgba(255, 255, 255, 0.92);
-  text-shadow: 0 0.08em 0.2em rgba(0, 0, 0, 0.35);
+.track-slide--splash {
+  width: 100vw;
+  flex-shrink: 0;
 }
 
-.vertical-stack {
+.track-slide--portrait {
+  width: 100vw;
+  flex-shrink: 0;
+}
+
+.track-slide--product {
+  width: 100vw;
+  flex-shrink: 0;
+}
+
+/* Opening splash: centered logo (+ taglines). White canvas reads dark Logo.png cleanly. */
+.splash-screen {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  background: #fff;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
+  padding: clamp(1.5rem, 5vmin, 2.5rem);
 }
 
-.stack-panel {
-  min-height: calc(var(--vh, 1vh) * 100);
-  background: var(--panel-bg);
-  display: grid;
-  place-items: center;
-  font-weight: 600;
-  font-size: clamp(2rem, 6vw, 4rem);
+.splash-screen__logo {
+  display: block;
+  /* max-width: 90vw;
+  max-height: 90vh; */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.splash-screen__taglines {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(1.75rem, 7vh, 3.25rem);
+  text-align: center;
+}
+
+.splash-screen__line {
+  margin: 0;
+  font-family: "Burberry House", "Times New Roman", Times, serif;
+  font-size: clamp(1.56rem, 4.2vw, 1.8rem);
+  font-weight: 400;
   letter-spacing: 0.04em;
+  line-height: 1.35;
+  color: rgba(0, 0, 0, 0.75);
 }
 
-.stack-panel::after {
-  content: attr(data-panel);
-  color: rgba(255, 255, 255, 0.92);
-  text-shadow: 0 0.08em 0.2em rgba(0, 0, 0, 0.35);
+/* Framed imagery: fills parent slide minus --slide-inset padding */
+.frame {
+  margin: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  background: #fafafa;
+  /* border: 1px solid var(--rule); */
+  padding: var(--slide-inset);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+
+.frame--bw img {
+  filter: grayscale(100%);
+}
+
+.frame--colour {
+  background: #fafafa;
+}
+
+/* —— Vertical story (Artboard 2) —— */
+
+.vertical-story {
+  background: var(--bg);
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 5vw, 3rem) clamp(3rem, 8vw, 6rem);
+}
+
+.vertical-story__inner {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.vertical-story__intro {
+  margin:   0 1rem 2rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: #5a5a5a;
+  text-align: center;
+}
+
+.video-shell {
+  margin: 0 auto 4.5rem;
+  max-width: 360px;
+  aspect-ratio: 9 / 16;
+  background: #f0f2f6;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+.video-shell__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vertical-story__section-title {
+  margin: 0 0 2rem;
+  text-align: center;
+  font-family: "Burberry House", "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-size: clamp(1.65rem, 4.5vw, 2.25rem);
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.feature-block {
+  padding: 0 0 0.8rem;
+}
+
+.feature-block__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  margin-bottom: 1.25rem;
+}
+
+.feature-block__copy {
+  margin:   0 2rem 2rem;
+
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+}
+
+/* Product rail: image grows to fill viewport; copy aligns with image inset */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  gap: clamp(0.45rem, 2vmin, 0.75rem);
+  justify-content: flex-start;
+  padding-bottom: clamp(1rem, 3vmin, 1.75rem);
+}
+
+.track-slide--product .product-card .frame {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.product-card__name,
+.product-card__desc {
+  padding-inline: var(--slide-inset);
+}
+
+.product-card__cta {
+  padding-inline: var(--slide-inset);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* Section 3: Oracle Book; copy left-aligned, same width/inset as .frame above */
+.track--products .product-card {
+  align-items: stretch;
+}
+
+.track--products .product-card > .frame {
+  align-self: stretch;
+  width: 100%;
+}
+
+.track--products .product-card__name,
+.track--products .product-card__desc {
+  font-family: "Burberry Oracle Book", "Burberry House", Georgia, serif;
+  text-align: left;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  box-sizing: border-box;
+}
+
+.track--products .product-card__cta,
+.track--products .product-card__cta--oracle {
+  font-family: "Burberry Oracle Book", "Burberry House", Georgia, serif;
+  display: block;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.track--products .product-card__cta--oracle {
+  letter-spacing: 0.12em;
+  font-weight: 400;
+  text-transform: none;
+  font-size: clamp(0.8rem, 2.2vmin, 0.95rem);
+}
+
+.product-card__cta:hover {
+  color: var(--accent);
+}
+
+.product-card__name {
+  margin: 0;
+  font-family: "Burberry House", "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-size: 1.35rem;
+}
+
+.product-card__desc {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.story-footer {
+  padding: 3rem 1.5rem 4rem;
+  text-align: center;
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+}
+
+.story-footer__note {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #666;
 }
