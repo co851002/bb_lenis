@@ -296,7 +296,6 @@ body {
   padding-inline: var(--slide-inset);
   font-size: 0.75rem;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 0.25em;
