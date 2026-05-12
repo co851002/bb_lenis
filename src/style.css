@@ -380,7 +380,6 @@ body {
 
 .product-card__name {
   margin: 0;
-  padding-top: clamp(0.85rem, 4vmin, 1.65rem);
   font-family: "Burberry House", "Times New Roman", Times, serif;
   font-weight: 400;
   font-size: 1.35rem;
