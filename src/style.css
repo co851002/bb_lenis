@@ -349,6 +349,7 @@ body {
   max-width: none;
   margin-inline: 0;
   box-sizing: border-box;
+  padding-bottom: clamp(0.325rem, 1.6vmin, 0.675rem);
 }
 
 .track--products .product-card__cta,
@@ -359,7 +360,11 @@ body {
   text-align: left;
   box-sizing: border-box;
   /* Trench coats rail: roomy on large screens, scales down on narrow / short viewports */
-  padding-block: clamp(0.25rem, calc(0.325rem + 1.425vmin + 0.425vw), 1.675rem);
+  padding-block: clamp(
+    0.125rem,
+    calc(0.1625rem + 0.7125vmin + 0.2125vw),
+    0.8375rem
+  );
 }
 
 .track--products .product-card__cta--oracle {
