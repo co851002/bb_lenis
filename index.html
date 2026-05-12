@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lenis horizontal strips</title>
+  </head>
+  <body>
+    <header class="hint">
+      <p>
+        Scroll down — six screens slide right, two full screens straight down,
+        then four screens slide right again.
+      </p>
+    </header>
+
+    <main>
+      <section
+        class="scroll-strip"
+        data-panels="6"
+        aria-label="First horizontal sequence, six panels"
+      >
+        <div class="scroll-strip-inner">
+          <div class="track">
+            <div class="panel" style="--panel-bg: #e63946" data-panel="1"></div>
+            <div class="panel" style="--panel-bg: #f4a261" data-panel="2"></div>
+            <div class="panel" style="--panel-bg: #2a9d8f" data-panel="3"></div>
+            <div class="panel" style="--panel-bg: #264653" data-panel="4"></div>
+            <div class="panel" style="--panel-bg: #8338ec" data-panel="5"></div>
+            <div class="panel" style="--panel-bg: #ffbe0b" data-panel="6"></div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="vertical-stack"
+        aria-label="Two full-viewport screens, vertical scroll"
+      >
+        <div class="stack-panel" style="--panel-bg: #fb5607" data-panel="7"></div>
+        <div class="stack-panel" style="--panel-bg: #06d6a0" data-panel="8"></div>
+      </section>
+
+      <section
+        class="scroll-strip"
+        data-panels="4"
+        aria-label="Second horizontal sequence, four panels"
+      >
+        <div class="scroll-strip-inner">
+          <div class="track">
+            <div class="panel" style="--panel-bg: #118ab2" data-panel="9"></div>
+            <div class="panel" style="--panel-bg: #ffd166" data-panel="10"></div>
+            <div class="panel" style="--panel-bg: #ef476f" data-panel="11"></div>
+            <div class="panel" style="--panel-bg: #7209b7" data-panel="12"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="endcap">
+      <p>End</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
