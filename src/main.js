@@ -142,6 +142,7 @@ function initJoystick() {
     size: 100,
     color: { front: "rgba(27, 27, 27, 0.85)", back: "rgba(27, 27, 27, 0.12)" },
     restOpacity: 0.6,
+    lockY: true, // only move on the Y axis (up and down)
   });
 
   manager.on("move", (evt) => {
