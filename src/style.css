@@ -166,7 +166,7 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: clamp(4.75rem, 12vh, 8rem);
+  bottom: clamp(4.75rem, 30vh, 15rem);
   text-align: center;
 }
 
