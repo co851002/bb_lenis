@@ -142,7 +142,7 @@ function initJoystick() {
     size: 100,
     color: { front: "rgba(27, 27, 27, 0.85)", back: "rgba(27, 27, 27, 0.12)" },
     restOpacity: 0.6,
-    lockX: true, 
+    // lockX: true, 
   });
 
   manager.on("move", (evt) => {
